@@ -4,6 +4,10 @@
   <h4><%= @book.author%></h4>
   <p><%= @book.description%></p>
   <%= link_to "Go Back", root_path %>
-  <%= link_to "Edit", edit_book_path(@book) %>
-  <%= link_to "Delete", book_path(@book), method: :delete,  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+  <% if user_signed_in? %>
+    <% if @book.user_id == current_user.id %>
+      <%= link_to "Edit", edit_book_path(@book) %>
+      <%= link_to "Delete", book_path(@book), method: :delete,  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
 </div>
