@@ -1,7 +1,14 @@
 <div class="container">
-  <h1>All Books</h1>
-  <% @books.each do |book| %>
-    <h2><%= link_to book.title, book_path(book) %></h2>
+  <% if params[:category].blank? %>
+    <h1>All Books</h1>
+  <% else %>
+    <h2 class="current-category"><%= params[:category] %></h2>
   <% end %>
- 
+  <% if @books.count == 0 %>
+    <h2>There are no books in this category</h2>
+  <%else %>
+    <% @books.each do |book| %>
+      <h2><%= link_to book.title, book_path(book) %></h2>
+    <% end %>
+  <% end %>
 </div>

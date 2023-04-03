@@ -1,4 +1,11 @@
 <div class="container">
-  <h2>Edit Book </h2>
-  <%= render 'form' %>
+  <h2>Edit Book</h2>
+  <%= simple_form_for @book, :html => { :multipart => true } do |f| %>
+  <%= f.select :category_id, @categories %>
+  <%= f.input :title, label: "Book Title" %>
+  <%= f.input :author %>
+  <%= f.input :description %>
+  <br/>
+  <%= f.button :submit, class: "btn btn-primary btn-sm" %>
+<% end %>
 </div>
